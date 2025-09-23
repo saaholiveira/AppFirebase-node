@@ -66,23 +66,3 @@ export default {
     }
   }
 };
-
-const express = require("express");
-const router = express.Router();
- 
-// Exemplo de dados (simulação)
-const alunos = [
-  { id: 1, nome: "Matheus", email: "matheus@email.com" },
-  { id: 2, nome: "Ana", email: "ana@email.com" }
-];
- 
-// Rota para exibir um aluno específico
-router.get("/:id", (req, res) => {
-  const aluno = alunos.find(a => a.id == req.params.id);
-  if (!aluno) {
-    return res.status(404).send("Aluno não encontrado");
-  }
-  res.render("alunos/show", { aluno });
-});
- 
-module.exports = router;

@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 
 // Rotas
 import cursoRoutes from "./routes/cursoRoutes.js";
+import alunoRoutes from "./routes/alunoRoutes.js";
 
 // -------------------- CONFIGURAÇÕES BÁSICAS --------------------
 dotenv.config();
@@ -31,12 +32,14 @@ app.use(express.static(path.join(__dirname, "public"))); // arquivos estáticos
 
 // -------------------- ROTAS --------------------
 app.use("/cursos", cursoRoutes);
+app.use("/alunos", alunoRoutes); // ✅ Rota de alunos tratada no arquivo externo
 
+// Página inicial
 app.get("/", (req, res) => {
   res.render("home", { title: "Página Inicial" });
 });
 
-// 404
+// -------------------- 404 --------------------
 app.use((req, res) => {
   res.status(404).render("notfound", { title: "Página não encontrada" });
 });

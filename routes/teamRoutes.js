@@ -3,9 +3,8 @@ import express from 'express';
 const router = express.Router();
 
 const teamMembers = [
-  { name: "João Silva", photo: "membro1.jpg" },
-  { name: "Maria Oliveira", photo: "membro2.jpg" },
-  { name: "Carlos Souza", photo: "membro3.jpg" },
+  { name: "Matheus Soares Valério", photo: "membro1.jpg" },
+  { name: "Sarah Olivatto de Oliveira", photo: "membro2.jpg" },
 ];
 
 router.get('/team', (req, res) => {

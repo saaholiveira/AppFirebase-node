@@ -9,6 +9,7 @@ import { fileURLToPath } from "url";
 // Rotas
 import cursoRoutes from "./routes/cursoRoutes.js";
 import alunoRoutes from "./routes/alunoRoutes.js";
+import teamRoutes from "./routes/teamRoutes.js";
 
 // -------------------- CONFIGURAÇÕES BÁSICAS --------------------
 dotenv.config();
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, "public"))); // arquivos estáticos
 // -------------------- ROTAS --------------------
 app.use("/cursos", cursoRoutes);
 app.use("/alunos", alunoRoutes); // ✅ Rota de alunos tratada no arquivo externo
+app.use("/team", teamRoutes);
 
 // Página inicial
 app.get("/", (req, res) => {

@@ -41,6 +41,11 @@ app.get("/", (req, res) => {
   res.render("home", { title: "Página Inicial" });
 });
 
+router.get("/", (req, res) => {
+  res.render("team", { title: "Equipe" });
+});
+
+
 // -------------------- 404 --------------------
 app.use((req, res) => {
   res.status(404).render("notfound", { title: "Página não encontrada" });

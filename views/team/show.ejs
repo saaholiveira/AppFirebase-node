@@ -2,40 +2,93 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Equipe</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      text-align: center;
+      color: #333;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: #222;
+    }
+
     .team-container {
       display: flex;
-      gap: 20px;
       flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
     }
+
     .team-member {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-      width: 150px;
-    }
-    .team-member img {
-      max-width: 100%;
-      height: auto;
+      background: #fff;
       border-radius: 8px;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      width: 160px;
+      padding: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 16px rgb(0 0 0 / 0.15);
+    }
+
+    .team-member img {
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+
+    .team-member p {
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0;
+      color: #444;
+    }
+
+    /* Responsivo para telas menores */
+    @media (max-width: 480px) {
+      .team-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .team-member {
+        width: 80%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>Equipe</h1>
+  <main>
+    <h1>Equipe</h1>
 
-  <div class="team-container">
-    <div class="team-member">
-      <img src="Matheus.jpg" alt="Nome do Membro 1" />
-      <p>Matheus Soares Valério</p>
-    </div>
-    <div class="team-member">
-      <img src="Sarah.jpg" alt="Nome do Membro 2" />
-      <p>Sarah Olivatto de Oliveira</p>
-    </div>
-  </div>
+    <section class="team-container" aria-label="Lista de membros da equipe">
+      <article class="team-member">
+        <img src="/images/Matheus.jpg" alt="Foto de Matheus Soares Valério" />
+        <p>Matheus Soares Valério</p>
+      </article>
+
+      <article class="team-member">
+        <img src="/images/Sarah.jpg" alt="Foto de Sarah Olivatto de Oliveira" />
+        <p>Sarah Olivatto de Oliveira</p>
+      </article>
+    </section>
+  </main>
 
 </body>
 </html>

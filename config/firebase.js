@@ -4,7 +4,7 @@ import { getDatabase } from "firebase/database";
 const firebaseConfig = {
   apiKey: "AIzaSyAQXcDs-sjnO4fYj8mrD7BDZp6kPW5DGMo",
   authDomain: "jquery-firebase-4987e.firebaseapp.com",
-  databaseURL: "https://jquery-firebase-4987e-default-rtdb.firebaseio.com",
+  databaseURL: "https://nodejs-6d662-default-rtdb.firebaseio.com/",
   projectId: "jquery-firebase-4987e",
   storageBucket: "jquery-firebase-4987e.firebasestorage.app",
   messagingSenderId: "280908793283",

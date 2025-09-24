@@ -38,11 +38,7 @@ app.use("/team", teamRoutes);
 
 // Página inicial
 app.get("/", (req, res) => {
-  res.render("home", { title: "Página Inicial" });
-});
-
-router.get("/", (req, res) => {
-  res.render("team", { title: "Equipe" });
+res.render("home", { title: "Página Inicial" });
 });
 
 

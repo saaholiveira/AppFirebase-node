@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, "public"))); // arquivos estáticos
 // -------------------- ROTAS --------------------
 app.use("/cursos", cursoRoutes);
 app.use("/alunos", alunoRoutes); // ✅ Rota de alunos tratada no arquivo externo
-app.use("/professores", professorRoutes);
+app.use("/professor", professorRoutes);
 app.use("/team", teamRoutes);
 
 // Página inicial

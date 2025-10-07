@@ -1,48 +1,69 @@
-// controllers/professorController.js
-const Professor = require('../models/professorModel');
+import { db } from "../config/firebase.js";
+import { ref, get, push, set, child, update, remove } from "firebase/database";
 
-// Função para criar um novo professor
-const criarProfessor = async (req, res) => {
-  try {
-    const { nome, email } = req.body;
+const rootRef = ref(db, "professor");
 
-    // Verificar se os dados são válidos
-    if (!nome || !email) {
-      return res.status(400).json({ message: 'Nome e email são obrigatórios.' });
+export default {
+  async list(req, res) {
+    console.log("🚀 Entrou no professorController.list");
+    try {
+      const snap = await get(rootRef);
+      const professor = snap.exists() ? snap.val() : {};
+      res.render("professor/list", { title: "Professor", professor });
+    } catch (e) {
+      console.error("Erro list professor:", e);
+      res.status(500).send("Erro ao listar professor");
     }
+  },  
 
-    // Criar o novo professor
-    const novoProfessor = new Professor({
-      nome,
-      email,
-    });
+  createForm(req, res) {
+    res.render("professor/create", { title: "Novo professor" });
+  },
 
-    // Salvar no banco de dados
-    await novoProfessor.save();
+  async create(req, res) {
+    try {
+      const { nome, email } = req.body;
+      const novo = push(rootRef);
+      await set(novo, { nome, email });
+      res.redirect("/professor");
+    } catch (e) {
+      console.error("Erro create professor:", e);
+      res.status(500).send("Erro ao criar professor");
+    }
+  },
 
-    // Resposta de sucesso
-    res.status(201).json({
-      message: 'Professor criado com sucesso!',
-      professor: novoProfessor,
-    });
-  } catch (err) {
-    console.error('Erro ao criar professor:', err);
-    res.status(500).json({ message: 'Erro no servidor ao criar professor.' });
+  async editForm(req, res) {
+    try {
+      const { id } = req.params;
+      const snap = await get(child(rootRef, id));
+      if (!snap.exists()) return res.status(404).send("professor não encontrado");
+      res.render("professor/edit", { title: "Editar professor", id, professor: snap.val() });
+    } catch (e) {
+      console.error("Erro editForm professor:", e);
+      res.status(500).send("Erro ao abrir edição");
+    }
+  },
+
+  async update(req, res) {
+    try {
+      const { id } = req.params;
+      const { nome, email } = req.body;
+      await update(child(rootRef, id), { nome, email });
+      res.redirect("/professor");
+    } catch (e) {
+      console.error("Erro update professor:", e);
+      res.status(500).send("Erro ao atualizar professor");
+    }
+  },
+
+  async delete(req, res) {
+    try {
+      const { id } = req.params;
+      await remove(child(rootRef, id));
+      res.redirect("/professor");
+    } catch (e) {
+      console.error("Erro delete professor:", e);
+      res.status(500).send("Erro ao excluir professor");
+    }
   }
-};
-
-// Função para listar todos os professores
-const listarProfessores = async (req, res) => {
-  try {
-    const professores = await Professor.find(); // Busca todos os professores no banco de dados
-    res.status(200).json(professores); // Retorna os professores em formato JSON
-  } catch (err) {
-    console.error('Erro ao listar professores:', err);
-    res.status(500).json({ message: 'Erro no servidor ao listar professores.' });
-  }
-};
-
-module.exports = {
-  criarProfessor,
-  listarProfessores,
 };

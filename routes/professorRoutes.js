@@ -1,24 +1,20 @@
-const express = require('express');
-const router = express.Router();
-const Professor = require('../models/professorModel');
+import { Router } from "express";
+import professorController from "../controllers/professorController.js";
 
-router.post('/', async (req, res) => {
-  try {
-    const novoProfessor = new Professor(req.body);
-    await novoProfessor.save();
-    res.status(201).json(novoProfessor);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+const router = Router();
 
-router.get('/', async (req, res) => {
-  try {
-    const professores = await Professor.find();
-    res.json(professores);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+// /professor/
+router.get("/", professorController.list);
 
-module.exports = router;
+// /professor/create
+router.get("/create", professorController.createForm);
+router.post("/create", professorController.create);
+
+// /professor/:id/edit
+router.get("/:id/edit", professorController.editForm);
+router.post("/:id/edit", professorController.update);
+
+// /professor/:id/delete
+router.get("/:id/delete", professorController.delete);
+
+export default router;

@@ -9,6 +9,7 @@ import { fileURLToPath } from "url";
 // Rotas
 import cursoRoutes from "./routes/cursoRoutes.js";
 import alunoRoutes from "./routes/alunoRoutes.js";
+import professorRoutes from "./routes/professorRoutes.js";
 import teamRoutes from "./routes/teamRoutes.js";
 
 // -------------------- CONFIGURAÇÕES BÁSICAS --------------------
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, "public"))); // arquivos estáticos
 // -------------------- ROTAS --------------------
 app.use("/cursos", cursoRoutes);
 app.use("/alunos", alunoRoutes); // ✅ Rota de alunos tratada no arquivo externo
+app.use("/professores", professorRoutes);
 app.use("/team", teamRoutes);
 
 // Página inicial

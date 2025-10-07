@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h4 mb-0">Professores</h1>
+    <a href="/professor/create" class="btn btn-primary">Novo Professor</a>
+  </div>
+  
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th class="text-end">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (Object.keys(professor).length === 0) { %>
+            <tr>
+              <td colspan="3" class="text-center text-muted py-4">
+                Nenhum professor cadastrado.
+              </td>
+            </tr>
+          <% } %>
+          <% for (let id in professor) { %>
+            <tr>
+              <td><%= professor[id].nome %></td>
+              <td><%= professor[id].email %></td>
+              <td class="text-end">
+                <a class="btn btn-sm btn-outline-warning" href="/professor/<%= id %>/edit">Editar</a>
+                <a class="btn btn-sm btn-outline-danger" href="/professor/<%= id %>/delete" onclick="return confirm('Excluir este aluno?')">Excluir</a>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
